@@ -4,8 +4,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "preinstall": "npm i -g forever",
-    "start": "forever start app.js",
+    "preinstall": "npm i -g forever nodemon",
+    "start": "nodemon app.js",
     "test": "mocha --recursive test",
     "test:coverage": "nyc npm test",
     "test:unit": "mocha --recursive test/middleware test/models test/routes",

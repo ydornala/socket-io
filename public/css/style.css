@@ -10,6 +10,14 @@ a {
     margin: 0 auto;
   }
 
+  .height-70 {
+    height: 70%;
+  }
+
+  .height-30 {
+    height: 30%;
+  }
+
   .pages li {
     padding: 8px 0;
   }
@@ -43,7 +51,7 @@ html, input {
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 ul {

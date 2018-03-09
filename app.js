@@ -8,8 +8,11 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 const routes = require('./routes/index');
 const users = require('./routes/user');
+const section = require('./routes/section');
 
 const app = express();
 
@@ -20,6 +23,10 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
     socket.on('question', function(d) {
         socket.emit('question', d);
+    });
+
+    socket.on('section', (id) => {
+        console.log('section ==> ', id);
     });
 });
 //require('./routes/index').init(io);
@@ -44,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/section', section);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -78,6 +86,14 @@ app.use((err, req, res, next) => {
     });
 });
 
-server.listen(process.env.PORT || 3010);
+mongoose.connect('mongodb://admin:admin123@ds261078.mlab.com:61078/deepakdemo', {}, (err) => {
+    if(err) {
+        console.log('Mongo Db connection error', err);
+        process.exit(1);
+    }
+
+    console.log('Connected DB...');
+    server.listen(process.env.PORT || 3010);
+});
 
 //module.exports = app;

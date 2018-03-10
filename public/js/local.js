@@ -8,19 +8,25 @@ socket.on('question', function(d) {
     $('.pages').append('<li><strong>' + d.name + ':</strong> ' + d.question + '</li>')
 });
 
-
 angular.module('deepak', [])
     .controller('section', ($http, $scope) => {
         $scope.sections = [];
-        $http.get('/section')
-            .then(res => {
-                console.log('section docs', res);
 
-                $scope.sections = res.data;
-        });
+        $scope.load = function() {
+            $http.get('/section')
+                .then(res => {
+                    $scope.sections = res.data;
+            });
+        }
+
+        $scope.load();
 
         $scope.completed = function(id) {
             console.log('completed...', id)
             socket.emit('section', {id: id});
         }
+
+        socket.on('section', () => {
+            $scope.load();
+        });
     });

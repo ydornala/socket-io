@@ -17,12 +17,12 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/next', (req, res) => {
+router.get('/next/:id', (req, res) => {
     const id = req.params.id;
 
     sections.findByIdAndUpdate(id, { status: 'c' })
         .then(doc => {
-            console.log('update doc', doc);
+            res.send(doc);
         });
 });
 

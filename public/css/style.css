@@ -10,12 +10,19 @@ a {
     margin: 0 auto;
   }
 
-  .height-70 {
-    height: 70%;
+  .sections li span {
+    position: absolute;
+    font-size: 20px;
+    transform: translateY(-50%);
+    top: 50%;
   }
 
-  .height-30 {
-    height: 30%;
+  .height-60 {
+    height: 60%;
+  }
+
+  .height-40 {
+    height: 40%;
   }
 
   .pages li {

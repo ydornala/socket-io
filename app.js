@@ -15,18 +15,28 @@ const users = require('./routes/user');
 const section = require('./routes/section');
 
 const app = express();
+const rp = require('request-promise');
 
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server);
+const axios = require('axios');
 
 io.on('connection', (socket) => {
     socket.on('question', function(d) {
         socket.emit('question', d);
     });
 
-    socket.on('section', (id) => {
-        console.log('section ==> ', id);
+    socket.on('section', (params) => {
+        console.log('section ==> ', params);
+
+        axios.get('http://localhost:3010/section/next/' + params.id)
+            .then((res) => {
+                // console.log('next  post ==> ', res);
+                socket.emit('section', res.data);
+            }, err => {
+                console.error('error');
+            });
     });
 });
 //require('./routes/index').init(io);

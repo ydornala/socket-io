@@ -1,16 +1,16 @@
 extends layout
 
 block content
-  .row.height-70
+  .row.height-60
     .col-md-8
       h1 Your questions...
       ul.pages
     .col-md-4
       h1 sections 
-      ul.list-group
+      ul.list-group.sections
         li.list-group-item(ng-repeat="section in sections")
           span {{ section.name }}
           button.btn.btn-primary.float-right(ng-disabled="section.status == 'c'", ng-click="completed(section._id)") Next
-  .row.height-30
+  .row.height-40
     .col-md-12
       h1 Results

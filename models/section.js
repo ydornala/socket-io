@@ -6,7 +6,8 @@ var sectionSchema = mongoose.Schema({
         type: String,
         enum: ['p', 'c'],
         default: 'p'
-    }
+    },
+    sequence: Number
 });
 
 var Sections = mongoose.model('Section', sectionSchema);

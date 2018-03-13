@@ -5,8 +5,14 @@ setInterval(function() {
 }, 2000);
 
 socket.on('question', function(d) {
-    console.log('question came', d);
     $('.pages').append('<li><strong>' + d.name + ':</strong> ' + d.question + '</li>')
+    console.log('pages height', document.querySelector(".pages").scrollHeight);
+    // window.scrollTo(0,document.querySelector(".pages").scrollHeight);
+
+});
+
+socket.on('section', function(d) {
+    console.log('section came', d);
 });
 
 angular.module('deepak', [])

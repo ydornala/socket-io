@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const sections = require('../models/section');
+const questions = require('../models/question');
 
 /* GET users listing. */
 router.get('/', (req, res) => {
@@ -22,7 +23,10 @@ router.get('/next/:id', (req, res) => {
 
     sections.findByIdAndUpdate(id, { status: 'c' })
         .then(doc => {
-            res.send(doc);
+            questions.find({section: id})
+                .then(qs => {
+                    res.send(qs);
+                })
         });
 });
 

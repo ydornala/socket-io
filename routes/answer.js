@@ -1,25 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-const questions = require('../models/question');
+const answers = require('../models/answer');
 
 /* GET questions listing. */
 router.get('/', (req, res) => {
-    questions.find({})
+    answers.find({})
         .then(docs => {
             res.send(docs);
     });
 });
 
 router.post('/', (req, res) => {
-    questions.create(req.body, (err, doc) => {
+    answers.create(req.body, (err, doc) => {
         res.send(doc);
     });
 });
 
-router.get('/:sectionId', (req, res) => {
-    console.log('params', req.params)
-    questions.find({section: req.params.sectionId}, (err, doc) => {
+router.get('/:questionId', (req, res) => {
+    answers.find({question: req.params.questionId}, (err, doc) => {
         res.send(doc);
     });
 });

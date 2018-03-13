@@ -14,6 +14,7 @@ const routes = require('./routes/index');
 const users = require('./routes/user');
 const section = require('./routes/section');
 const question = require('./routes/question');
+const answer = require('./routes/answer');
 
 const app = express();
 const rp = require('request-promise');
@@ -64,6 +65,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/section', section);
 app.use('/question', question);
+app.use('/answer', answer);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {

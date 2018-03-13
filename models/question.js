@@ -1,15 +1,16 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Section = require('./section');
 
-// var sectionSchema = mongoose.Schema({
-//     name: String,
-//     options: [String],
+var questionSchema = mongoose.Schema({
+    name: String,
+    options: [String],
 
-//     section: {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: 'Section'
-//     }
-// });
+    section: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Section'
+    }
+});
 
-// var Sections = mongoose.model('Section', sectionSchema);
+var Questions = mongoose.model('question', questionSchema);
 
-// module.exports = Sections;
+module.exports = Questions;

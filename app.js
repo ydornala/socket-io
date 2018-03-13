@@ -13,6 +13,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes/index');
 const users = require('./routes/user');
 const section = require('./routes/section');
+const question = require('./routes/question');
 
 const app = express();
 const rp = require('request-promise');
@@ -24,16 +25,16 @@ const axios = require('axios');
 
 io.on('connection', (socket) => {
     socket.on('question', function(d) {
-        socket.emit('question', d);
+        io.emit('question', d);
     });
 
     socket.on('section', (params) => {
         console.log('section ==> ', params);
 
-        axios.get('http://localhost:3010/section/next/' + params.id)
+        axios.get('http://deepak-socket-io.herokuapp.com/section/next/' + params.id)
             .then((res) => {
                 // console.log('next  post ==> ', res);
-                socket.emit('section', res.data);
+                io.emit('section', res.data);
             }, err => {
                 console.error('error');
             });
@@ -62,6 +63,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/section', section);
+app.use('/question', question);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {

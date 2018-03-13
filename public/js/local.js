@@ -5,6 +5,7 @@ setInterval(function() {
 }, 2000);
 
 socket.on('question', function(d) {
+    console.log('question came', d);
     $('.pages').append('<li><strong>' + d.name + ':</strong> ' + d.question + '</li>')
 });
 

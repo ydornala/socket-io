@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     socket.on('section', (params) => {
         console.log('section ==> ', params);
 
-        axios.get('http://localhost:3010/section/next/' + params.id)
+        axios.get('http://https://deepak-socket-io.herokuapp.com/section/next/' + params.id)
             .then((res) => {
                 // console.log('next  post ==> ', res);
                 io.emit('section', res.data);

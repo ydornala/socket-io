@@ -6,8 +6,7 @@ setInterval(function() {
 
 socket.on('question', function(d) {
     $('.pages').append('<li><strong>' + d.name + ':</strong> ' + d.question + '</li>')
-    console.log('pages height', document.querySelector(".pages").scrollHeight);
-    // window.scrollTo(0,document.querySelector(".pages").scrollHeight);
+    $('.pages').scrollTop($('.pages')[0].scrollHeight - $('.pages')[0].clientHeight);
 
 });
 

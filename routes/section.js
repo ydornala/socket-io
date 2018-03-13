@@ -30,4 +30,16 @@ router.get('/next/:id', (req, res) => {
         });
 });
 
+router.get('/enable/:id', (req, res) => {
+    const id = req.params.id;
+
+    sections.findByIdAndUpdate(id, { status: 'p' })
+        .then(doc => {
+            questions.find({section: id})
+                .then(qs => {
+                    res.send(qs);
+                })
+        });
+});
+
 module.exports = router;

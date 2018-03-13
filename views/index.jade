@@ -11,6 +11,7 @@ block content
         li.list-group-item(ng-repeat="section in sections")
           span {{ section.name }}
           button.btn.btn-primary.float-right(ng-disabled="section.status == 'c'", ng-click="completed(section._id)") Next
+          button.btn.btn-primary.float-right(ng-show="section.status == 'c'" ng-click="enable(section._id)") Enable
   .row.height-40
     .col-md-12
       h1 Results

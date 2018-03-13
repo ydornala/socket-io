@@ -32,6 +32,14 @@ angular.module('deepak', [])
             socket.emit('section', {id: id});
         }
 
+        $scope.enable = function(id) {
+            $http.get('/section/enable/' + id)
+                .then(res => {
+                    console.log('enable', res);
+                    $scope.load();
+                });
+        }
+
         socket.on('section', () => {
             $scope.load();
         });

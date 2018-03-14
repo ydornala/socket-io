@@ -15,6 +15,10 @@ socket.on('section', function(d) {
     console.log('section came', d);
 });
 
+socket.on('result', (results) => {
+    console.log('results client', results);
+});
+
 angular.module('deepak', [])
     .controller('section', ($http, $scope) => {
         $scope.sections = [];
@@ -43,9 +47,5 @@ angular.module('deepak', [])
 
         socket.on('section', () => {
             $scope.load();
-        });
-
-        socket.on('result', (results) => {
-            console.log('results client', results);
         });
     });

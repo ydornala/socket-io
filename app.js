@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
     socket.on('result', (answers) => {
         axios.post('https://deepak-socket-io.herokuapp.com/result/', answers)
             .then(res => {
-                socket.emit('result', res.data);
+                io.emit('result', res.data);
             })
      });
 });

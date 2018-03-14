@@ -87,4 +87,8 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/next', (req, res) => {
+    res.send('done...');
+});
+
 module.exports = router;

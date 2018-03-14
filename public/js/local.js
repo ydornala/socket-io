@@ -1,7 +1,8 @@
 var socket = io();
 
 setInterval(function() {
-   socket.emit('question', {name: 'Yeshwanth', question: 'whats your name?'});
+//    socket.emit('question', {name: 'Yeshwanth', question: 'whats your name?'});
+    // socket.emit('result', {'asd': 'aasdad'});
 }, 2000);
 
 socket.on('question', function(d) {
@@ -42,5 +43,9 @@ angular.module('deepak', [])
 
         socket.on('section', () => {
             $scope.load();
+        });
+
+        socket.on('result', (results) => {
+            console.log('results client', results);
         });
     });

@@ -24,10 +24,10 @@ async function calculateResult(ans, cb) {
                 console.log('correct ==> ', correct, a);
                 if(a.answer === correct.answer) {
                     count++;
+                } 
 
-                    if(ans.length - 1 === index) {
-                        cb({total: total, count: count});
-                    }
+                if(ans.length - 1 === index) {
+                    cb({total: total, count: count});
                 }
             });
         }

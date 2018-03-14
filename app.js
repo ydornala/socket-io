@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
             .then(res => {
                 io.emit('result', res.data);
             }, err => {
-                console.error('error result', err);
+                console.error('error result', err.data);
             })
      });
 });

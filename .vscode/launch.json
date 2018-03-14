@@ -11,7 +11,7 @@
             "name": "Launch Program",
             "port": 3010,
             "args": [
-                'node ./bin/www'
+                "app.js"
             ]
         }
     ]

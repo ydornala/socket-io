@@ -15,6 +15,7 @@ const users = require('./routes/user');
 const section = require('./routes/section');
 const question = require('./routes/question');
 const answer = require('./routes/answer');
+const result = require('./routes/result');
 
 const app = express();
 const rp = require('request-promise');
@@ -39,6 +40,10 @@ io.on('connection', (socket) => {
             }, err => {
                 console.error('error');
             });
+    });
+
+    socket.on('result', (answers) => {
+        console.log('result event =>>', answers);
     });
 });
 //require('./routes/index').init(io);
@@ -66,6 +71,7 @@ app.use('/users', users);
 app.use('/section', section);
 app.use('/question', question);
 app.use('/answer', answer);
+app.use('/result', result);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {

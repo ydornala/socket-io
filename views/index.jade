@@ -19,7 +19,12 @@ block content
         thead
           tr
             th Name
+            th Section
+            th Total Questions
+            th Total Correct
         tbody
           tr(ng-repeat="r in results")
             td {{r.user.name}}
             td {{ r.section.name }}
+            td {{ r.total }}
+            td {{ r.correctCount }}

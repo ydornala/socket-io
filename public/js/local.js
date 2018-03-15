@@ -72,6 +72,8 @@ angular.module('deepak', [])
 
         socket.on('result', (results) => {
             console.log('results client', results);
-            $scope.results = results;
+            $scope.$apply(function() {
+                $scope.results = results;
+            });
         });        
     });

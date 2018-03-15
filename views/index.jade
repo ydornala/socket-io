@@ -4,7 +4,7 @@ block content
   .row.height-60
     .col-md-8
       h1 Your questions...
-      ul.pages
+      ul.pages.jumbotron
     .col-md-4
       h1 sections 
       ul.list-group.sections
@@ -15,3 +15,11 @@ block content
   .row.height-40
     .col-md-12
       h1 Results
+      table
+        thead
+          tr
+            th Name
+        tbody
+          tr(ng-repeat="r in results")
+            td {{r.user.name}}
+            td {{ r.section.name }}

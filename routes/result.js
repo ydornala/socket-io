@@ -7,7 +7,7 @@ const results = require('../models/result');
 
 /* GET questions listing. */
 router.get('/', (req, res) => {
-    answers.find({})
+    results.find({})
         .then(docs => {
             res.send(docs);
     });
@@ -22,13 +22,14 @@ async function calculateResult(ans, cb) {
         if(a !== {} || a !== null) {
             answers.findOne({question: a.question}, (err, correct) => {
                 console.log('correct ==> ', correct, a);
-                if(a.answer === correct.answer) {
-                    count++;
-                } 
-
+                if(correct) {
+                    if(a.answer === correct.answer) {
+                        count++;
+                    } 
+                }
                 if(ans.length - 1 === index) {
                     cb({total: total, count: count});
-                }
+                }                
             });
         }
     });
@@ -48,7 +49,12 @@ function saveResults(counts, body, cb) {
             cb(err, null)
         }
 
-        cb(null, calcResult)
+        results.find({})
+            .populate('user')
+            .populate('section')
+            .exec((err, pResults) => {
+                cb(null, pResults)
+            });
     });
 }
 

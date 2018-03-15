@@ -22,13 +22,27 @@ socket.on('section', function(d) {
     console.log('section came', d);
 });
 
-socket.on('result', (results) => {
-    console.log('results client', results);
-});
 
 angular.module('deepak', [])
     .controller('section', ($http, $scope) => {
         $scope.sections = [];
+        $scope.results = [{
+            "_id": "5aa939afeefc6b85255b0fa1",
+            "user": {
+                "_id": "5aa91c69ff68eb728b913289",
+                "name": "yeshu",
+                "__v": 0
+            },
+            "section": {
+                "status": "c",
+                "_id": "5aa8fda6ff68eb728b913281",
+                "name": "Development Concepts",
+                "__v": 0
+            },
+            "total": 3,
+            "correctCount": 0,
+            "__v": 0
+        }];
 
         $scope.load = function() {
             $http.get('/section')
@@ -55,4 +69,9 @@ angular.module('deepak', [])
         socket.on('section', () => {
             $scope.load();
         });
+
+        socket.on('result', (results) => {
+            console.log('results client', results);
+            $scope.results = results;
+        });        
     });

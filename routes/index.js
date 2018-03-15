@@ -12,7 +12,7 @@ function init(io) {
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Deepak PPT' });
 });
 
 module.exports = router;

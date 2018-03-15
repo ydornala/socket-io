@@ -8,6 +8,8 @@ const results = require('../models/result');
 /* GET questions listing. */
 router.get('/', (req, res) => {
     results.find({})
+        .populate('user')
+        .populate('section')
         .then(docs => {
             res.send(docs);
     });
